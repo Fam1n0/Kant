@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Brush Effect</title>
+    <style>
+        /* CSS styles go here */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .brush-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .brush {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .brush:hover {
+            transform: scale(1.2); /* Enlarge the brush on hover for an effect */
+        }
+        input[type="file"] {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*">
+    <div class="brush-container">
+        <!-- Uploaded images will be displayed here as brushes -->
+    </div>
+    <script>
+        // JavaScript code goes here
+        const imageInput = document.getElementById("imageInput");
+        const brushContainer = document.querySelector(".brush-container");
+
+        // Handle image upload
+        imageInput.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.className = "brush";
+                brushContainer.appendChild(img);
+            }
+        });
+    </script>
+</body>
+</html>
